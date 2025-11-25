@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import tn.esprit.review.ui.AddReviewActivity;
 import tn.esprit.review.R;
 
 public class MainActivity extends AppCompatActivity {

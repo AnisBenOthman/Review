@@ -2,61 +2,45 @@ package tn.esprit.review.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RatingBar;
-import android.widget.Toast;
 
 import tn.esprit.review.R;
-import tn.esprit.review.dao.ReviewDao;
-import tn.esprit.review.models.ReviewRestaurant;
+import tn.esprit.review.ui.fragments.AddReviewFragment;
 
 public class AddReviewActivity extends AppCompatActivity {
-
-    private RatingBar ratingBar;
-    private EditText edtComment;
-    private Button btnSubmit;
-    private ReviewDao dao;
-    private int restaurantId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
-
-        ratingBar = findViewById(R.id.ratingBar);
-        edtComment = findViewById(R.id.edtComment);
-        btnSubmit = findViewById(R.id.btnSubmit);
-dao = new ReviewDao(this);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        }
 
-                float rating = ratingBar.getRating();
-                String comment = edtComment.getText().toString().trim();
+        // Récupérer les extras passés par l'Intent
+        //String mode = getIntent().getStringExtra("mode"); // "restaurant" ou "livreur"
+        //int id = getIntent().getIntExtra("id", -1);
+        String mode = "restaurant";   // "restaurant" ou "livreur"
+        int id = 5;                   // ID du restaurant ou du livreur
 
-                if (rating == 0) {
-                    Toast.makeText(AddReviewActivity.this, "Donnez une note !", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                ReviewRestaurant review = new ReviewRestaurant(
-                        restaurantId,
-                        1,
-                        rating,
-                        comment);
-                long id = dao.addReviewRestaurant(review);
+        // Optionnel : vérifier que id est valide
+//        if (id == -1 || mode == null) {
+//            // si paramètres manquants, fermer et prévenir
+//            finish();
+//            return;
+//        }
 
-                if (id > 0) {
-                    Toast.makeText(AddReviewActivity.this, "Avis ajouté !", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(AddReviewActivity.this, "Erreur lors de l'ajout", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        // Charger le fragment et lui passer les arguments
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, AddReviewFragment.newInstance(mode, id))
+                .commit();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish(); // ferme l’activité quand on clique sur ←
+        return true;
     }
 }

@@ -25,9 +25,11 @@
         <!-- Other activities are declared separately -->
         <activity
             android:name=".ui.AddReviewActivity"
+            android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
         <activity
             android:name=".ui.RestaurantReviewActivity"
+            android:theme="@style/Theme.AppCompat.Light"
             android:exported="true" />
 
     </application>

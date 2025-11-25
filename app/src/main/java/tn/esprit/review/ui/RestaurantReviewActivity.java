@@ -20,13 +20,14 @@ public class RestaurantReviewActivity extends AppCompatActivity {
     private RecyclerView recyclerReviews;
     private TextView txtAverage;
     private ReviewDao dao;
-    private int restaurantId = 1;
+    private int restaurantId = 5;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dao = new ReviewDao(this);
 
         recyclerReviews = findViewById(R.id.recyclerReviews);
@@ -44,5 +45,10 @@ public class RestaurantReviewActivity extends AppCompatActivity {
 
         float avg = dao.getAverageRestaurant(restaurantId);
         txtAverage.setText("Moyenne : " + avg + " ★");
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

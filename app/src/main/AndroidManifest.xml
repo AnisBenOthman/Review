@@ -11,15 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Review">
+
+        <!-- MainActivity is the entry point of the app -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Other activities are declared separately -->
+        <activity
+            android:name=".ui.AddReviewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.RestaurantReviewActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>

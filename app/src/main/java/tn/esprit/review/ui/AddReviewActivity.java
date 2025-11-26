@@ -21,7 +21,7 @@ public class AddReviewActivity extends AppCompatActivity {
         // Récupérer les extras passés par l'Intent
         //String mode = getIntent().getStringExtra("mode"); // "restaurant" ou "livreur"
         //int id = getIntent().getIntExtra("id", -1);
-        String mode = "restaurant";   // "restaurant" ou "livreur"
+        String mode = "livreur";   // "restaurant" ou "livreur"
         int id = 5;                   // ID du restaurant ou du livreur
 
 

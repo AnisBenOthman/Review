@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import tn.esprit.review.ui.AddReviewActivity;
 import tn.esprit.review.R;
+import tn.esprit.review.ui.RestaurantReviewActivity;
+
 
 public class MainActivity extends AppCompatActivity {
     private Button btnAddReview;

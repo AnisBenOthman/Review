@@ -1,54 +1,38 @@
 package tn.esprit.review.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 import tn.esprit.review.R;
-import tn.esprit.review.dao.ReviewDao;
-import tn.esprit.review.models.ReviewRestaurant;
+import tn.esprit.review.ui.fragments.ReviewListFragment;
 
 public class RestaurantReviewActivity extends AppCompatActivity {
-
-    private RecyclerView recyclerReviews;
-    private TextView txtAverage;
-    private ReviewDao dao;
-    private int restaurantId = 5;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        dao = new ReviewDao(this);
-
-        recyclerReviews = findViewById(R.id.recyclerReviews);
-        txtAverage = findViewById(R.id.txtAverage);
-        loadData();
 
 
-    }
-    private void loadData() {
-        ArrayList<ReviewRestaurant> reviews = dao.getReviewsByRestaurant(restaurantId);
 
-        ReviewAdapter adapter = new ReviewAdapter(reviews);
-        recyclerReviews.setLayoutManager(new LinearLayoutManager(this));
-        recyclerReviews.setAdapter(adapter);
+        String mode = "livreur"; // ou "livreur"
+        int id = 5;
 
-        float avg = dao.getAverageRestaurant(restaurantId);
-        txtAverage.setText("Moyenne : " + avg + " ★");
-    }
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
+        //  via Intent (plus tard)
+        // String mode = getIntent().getStringExtra("mode");
+        // int id = getIntent().getIntExtra("id", -1);
+
+        if (mode == null || id == -1) {
+            Toast.makeText(this, "Paramètres manquants", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // Charger le fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_reviews, ReviewListFragment.newInstance(mode, id))
+                .commit();
     }
 }

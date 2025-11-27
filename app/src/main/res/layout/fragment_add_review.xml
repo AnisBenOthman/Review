@@ -22,6 +22,31 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/layoutMaxNote"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tvMaxMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Le meilleur que nous puissions obtenir :)"
+            android:textColor="#2ecc71"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:id="@+id/imgCurveArrow"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_arraw_curved"/>
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/edtComment"

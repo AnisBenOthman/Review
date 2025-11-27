@@ -13,6 +13,9 @@ public class RestaurantReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
 
 
@@ -35,4 +38,10 @@ public class RestaurantReviewActivity extends AppCompatActivity {
                 .replace(R.id.container_reviews, ReviewListFragment.newInstance(mode, id))
                 .commit();
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();   // retourne en arrière
+        return true;
+    }
+
 }

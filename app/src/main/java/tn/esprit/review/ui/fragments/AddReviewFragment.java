@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -66,11 +67,12 @@ public class AddReviewFragment extends Fragment {
         ratingBar = view.findViewById(R.id.ratingBar);
         edtComment = view.findViewById(R.id.edtComment);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        LinearLayout layoutMaxNote = view.findViewById(R.id.layoutMaxNote);
+
+
 
 
         dao = new ReviewDao(requireContext());
-
-
 
         btnSubmit.setOnClickListener(v -> saveReview());
     }
